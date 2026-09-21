@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import Human from "@vladmandic/human";
 import "./App.css";
-
+import campusImage from "./assets/campus.jpg";
+import collegeLogo from "./assets/gist-logo.jpg";
+import campusVideo from "./assets/campus-video.mp4";
 /* =========================================================
    REGISTERED PEOPLE
 ========================================================= */
@@ -662,6 +664,215 @@ function SecurityAlerts({
     </section>
   );
 }
+/* =========================================================
+   HOME COMPOUND
+========================================================= */
+function Home({ setActivePage }) {
+  return (
+    <div className="home-page">
+
+      {/* HEADER */}
+      <header className="home-header">
+
+        <div className="home-brand">
+          <img src={collegeLogo} alt="GIST Logo" />
+
+          <div>
+            <h2>CampusGuard</h2>
+            <span>AI SMART SECURITY</span>
+          </div>
+        </div>
+
+        <nav className="home-nav">
+
+          <button
+            className="home-nav-active"
+            onClick={() => setActivePage("home")}
+          >
+            Home
+          </button>
+
+          <button
+            onClick={() => setActivePage("dashboard")}
+          >
+            Dashboard
+          </button>
+
+          <button
+            onClick={() => setActivePage("live")}
+          >
+            Live Monitoring
+          </button>
+
+          <button
+            onClick={() => setActivePage("registered")}
+          >
+            Registered People
+          </button>
+
+          <button
+            onClick={() => setActivePage("alerts")}
+          >
+            Security Alerts
+          </button>
+
+        </nav>
+
+        <div className="home-status">
+          <span></span>
+          System Online
+        </div>
+
+      </header>
+
+
+      {/* HERO */}
+      <section className="home-hero">
+
+        <div className="home-left">
+
+          <div className="project-tag">
+            <span></span>
+            FINAL YEAR PROJECT
+          </div>
+
+          <h1>
+            CAMPUS
+            <br />
+            <em>GUARD</em>
+          </h1>
+
+          <div className="title-line"></div>
+
+          <h3>
+            Face Recognition Based Attendance
+            <br />
+            and Security System
+          </h3>
+
+          <p className="home-description">
+            An intelligent campus security platform combining
+            AI-powered face recognition, automated attendance,
+            and real-time monitoring to create a safer campus.
+          </p>
+
+
+          <div className="home-features">
+
+            <div>
+              <strong>01</strong>
+              <span>SECURE CAMPUS</span>
+            </div>
+
+            <div>
+              <strong>02</strong>
+              <span>SMART ATTENDANCE</span>
+            </div>
+
+            <div>
+              <strong>03</strong>
+              <span>REAL-TIME MONITORING</span>
+            </div>
+
+          </div>
+
+
+          <button
+            className="enter-dashboard"
+            onClick={() => setActivePage("dashboard")}
+          >
+            Enter CampusGuard
+            <span>→</span>
+          </button>
+
+        </div>
+
+
+        {/* CAMPUS IMAGE */}
+        <div className="home-right">
+
+          <div className="campus-image-wrapper">
+
+<video
+  className="campus-video"
+  src={campusVideo}
+  autoPlay
+  muted
+  loop
+  playsInline
+/>
+
+           
+
+            <div className="campus-caption">
+
+              <div className="live-campus">
+                <span></span>
+                CAMPUS
+              </div>
+
+              <strong>
+                GEETHANJALI INSTITUTE
+              </strong>
+
+              <small>
+                OF SCIENCE & TECHNOLOGY
+              </small>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      {/* BOTTOM FEATURES */}
+      <section className="home-bottom">
+
+        <div>
+          <span>AI</span>
+          <h3>Face Recognition</h3>
+          <p>
+            Intelligent identification of registered people.
+          </p>
+        </div>
+
+        <div>
+          <span>ATT</span>
+          <h3>Smart Attendance</h3>
+          <p>
+            Automated attendance through facial recognition.
+          </p>
+        </div>
+
+        <div>
+          <span>SEC</span>
+          <h3>Security Monitoring</h3>
+          <p>
+            Detect and record unauthorized access attempts.
+          </p>
+        </div>
+
+      </section>
+
+
+      <footer className="home-footer">
+
+        <div>
+          GEETHANJALI INSTITUTE OF SCIENCE & TECHNOLOGY
+        </div>
+
+        <span>
+          CAMPUSGUARD • 2025 — 2026
+        </span>
+
+      </footer>
+
+    </div>
+  );
+}
 
 /* =========================================================
    MAIN APP
@@ -670,7 +881,7 @@ function SecurityAlerts({
 function App() {
 
   const [activePage, setActivePage] =
-    useState("live");
+  useState("home");
 
   const [cameraActive, setCameraActive] =
     useState(false);
@@ -1556,6 +1767,11 @@ function App() {
   /* =======================================================
      SIDEBAR
   ======================================================= */
+if (activePage === "home") {
+  return (
+    <Home setActivePage={setActivePage} />
+  );
+}
 
   return (
 
@@ -1582,7 +1798,18 @@ function App() {
         </div>
 
         <div className="menu">
-
+           <button
+  className={`menu-item ${
+    activePage === "home"
+      ? "active"
+      : ""
+  }`}
+  onClick={() =>
+    setActivePage("home")
+  }
+>
+  🏠 Home
+</button>
           <button
             className={`menu-item ${
               activePage === "dashboard"
