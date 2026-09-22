@@ -4,6 +4,7 @@ import "./App.css";
 import campusImage from "./assets/campus.jpg";
 import collegeLogo from "./assets/gist-logo.jpg";
 import campusVideo from "./assets/campus-video.mp4";
+
 /* =========================================================
    REGISTERED PEOPLE
 ========================================================= */
@@ -51,35 +52,53 @@ const humanConfig = {
   modelBasePath:
     "https://cdn.jsdelivr.net/gh/vladmandic/human-models/models/",
 
-  detector: {
+  filter: {
     enabled: true,
-    rotation: true,
-    maxDetected: 1,
-    minConfidence: 0.5,
+    equalization: true,
+    flip: false,
   },
 
-  description: {
+  face: {
     enabled: true,
-    minConfidence: 0.5,
+
+    detector: {
+      enabled: true,
+      rotation: true,
+      maxDetected: 1,
+      minConfidence: 0.5,
+    },
+
+    mesh: {
+      enabled: true,
+    },
+
+    description: {
+      enabled: true,
+      minConfidence: 0.5,
+    },
+
+    iris: {
+      enabled: false,
+    },
+
+    emotion: {
+      enabled: false,
+    },
+
+    antispoof: {
+      enabled: false,
+    },
+
+    liveness: {
+      enabled: false,
+    },
   },
 
-  mesh: {
-    enabled: false,
-  },
-
-  iris: {
-    enabled: false,
-  },
-
-  emotion: {
+  body: {
     enabled: false,
   },
 
   hand: {
-    enabled: false,
-  },
-
-  body: {
     enabled: false,
   },
 
@@ -200,10 +219,7 @@ function saveUnknownAccess(similarity) {
 
   const previous = loadUnknownLogs();
 
-  const updated = [
-    unknownRecord,
-    ...previous,
-  ].slice(0, 100);
+  const updated = [unknownRecord, ...previous].slice(0, 100);
 
   localStorage.setItem(
     UNKNOWN_LOG_KEY,
@@ -220,10 +236,7 @@ function saveUnknownAccess(similarity) {
 function saveActivity(activity) {
   const previous = loadActivityLogs();
 
-  const updated = [
-    activity,
-    ...previous,
-  ].slice(0, 100);
+  const updated = [activity, ...previous].slice(0, 100);
 
   localStorage.setItem(
     ACTIVITY_LOG_KEY,
@@ -664,14 +677,15 @@ function SecurityAlerts({
     </section>
   );
 }
+
 /* =========================================================
-   HOME COMPOUND
+   HOME
 ========================================================= */
+
 function Home({ setActivePage }) {
   return (
     <div className="home-page">
 
-      {/* HEADER */}
       <header className="home-header">
 
         <div className="home-brand">
@@ -725,8 +739,6 @@ function Home({ setActivePage }) {
 
       </header>
 
-
-      {/* HERO */}
       <section className="home-hero">
 
         <div className="home-left">
@@ -756,7 +768,6 @@ function Home({ setActivePage }) {
             and real-time monitoring to create a safer campus.
           </p>
 
-
           <div className="home-features">
 
             <div>
@@ -776,7 +787,6 @@ function Home({ setActivePage }) {
 
           </div>
 
-
           <button
             className="enter-dashboard"
             onClick={() => setActivePage("dashboard")}
@@ -787,22 +797,18 @@ function Home({ setActivePage }) {
 
         </div>
 
-
-        {/* CAMPUS IMAGE */}
         <div className="home-right">
 
           <div className="campus-image-wrapper">
 
-<video
-  className="campus-video"
-  src={campusVideo}
-  autoPlay
-  muted
-  loop
-  playsInline
-/>
-
-           
+            <video
+              className="campus-video"
+              src={campusVideo}
+              autoPlay
+              muted
+              loop
+              playsInline
+            />
 
             <div className="campus-caption">
 
@@ -827,8 +833,6 @@ function Home({ setActivePage }) {
 
       </section>
 
-
-      {/* BOTTOM FEATURES */}
       <section className="home-bottom">
 
         <div>
@@ -857,7 +861,6 @@ function Home({ setActivePage }) {
 
       </section>
 
-
       <footer className="home-footer">
 
         <div>
@@ -881,7 +884,7 @@ function Home({ setActivePage }) {
 function App() {
 
   const [activePage, setActivePage] =
-  useState("home");
+    useState("home");
 
   const [cameraActive, setCameraActive] =
     useState(false);
@@ -927,15 +930,10 @@ function App() {
   ======================================================= */
 
   const videoRef = useRef(null);
-
   const streamRef = useRef(null);
-
   const humanRef = useRef(null);
-
   const animationRef = useRef(null);
-
   const referenceFacesRef = useRef([]);
-
   const detectingRef = useRef(false);
 
   /* =======================================================
@@ -1338,6 +1336,7 @@ function App() {
         );
 
       return;
+
     }
 
     if (
@@ -1765,13 +1764,24 @@ function App() {
   };
 
   /* =======================================================
-     SIDEBAR
+     HOME
   ======================================================= */
-if (activePage === "home") {
-  return (
-    <Home setActivePage={setActivePage} />
-  );
-}
+
+  if (activePage === "home") {
+
+    return (
+      <Home
+        setActivePage={
+          setActivePage
+        }
+      />
+    );
+
+  }
+
+  /* =======================================================
+     MAIN LAYOUT
+  ======================================================= */
 
   return (
 
@@ -1798,18 +1808,20 @@ if (activePage === "home") {
         </div>
 
         <div className="menu">
-           <button
-  className={`menu-item ${
-    activePage === "home"
-      ? "active"
-      : ""
-  }`}
-  onClick={() =>
-    setActivePage("home")
-  }
->
-  🏠 Home
-</button>
+
+          <button
+            className={`menu-item ${
+              activePage === "home"
+                ? "active"
+                : ""
+            }`}
+            onClick={() =>
+              setActivePage("home")
+            }
+          >
+            🏠 Home
+          </button>
+
           <button
             className={`menu-item ${
               activePage === "dashboard"
