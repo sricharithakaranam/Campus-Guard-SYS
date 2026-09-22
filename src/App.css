@@ -201,16 +201,16 @@ button:disabled {
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #15803d;
-  font-size: 13px;
-  font-weight: 700;
+  color: #304d42;
+  font-size: 12px;
+  font-weight: 600;
 }
 
 .dashboard-status span,
 .live-large span {
-  width: 8px;
-  height: 8px;
-  background: #22c55e;
+  width: 7px;
+  height: 7px;
+  background: #4f806c;
   border-radius: 50%;
 }
 
@@ -218,68 +218,18 @@ button:disabled {
    DASHBOARD CARDS
 ========================================================= */
 
-.dashboard-cards {
-  display: grid;
-  grid-template-columns:
-    repeat(4, minmax(0, 1fr));
-  gap: 18px;
-  margin-bottom: 22px;
-}
-
-.dashboard-card {
-  background: white;
-  border: 1px solid #eaecf0;
-  border-radius: 14px;
-  padding: 22px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  box-shadow:
-    0 2px 8px rgba(16, 24, 40, 0.04);
-}
-
-.card-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
-  background: #eff6ff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px;
-}
-
-.dashboard-card span {
-  display: block;
-  font-size: 12px;
-  color: #667085;
-  margin-bottom: 5px;
-}
-
-.dashboard-card strong {
-  display: block;
-  font-size: 26px;
-  color: #101828;
-}
-
-/* =========================================================
-   DASHBOARD GRID
-========================================================= */
-
 .dashboard-grid {
   display: grid;
-  grid-template-columns:
-    1.5fr 1fr;
+  grid-template-columns: 1.5fr 1fr;
   gap: 22px;
 }
 
 .dashboard-panel {
-  background: white;
-  border: 1px solid #eaecf0;
-  border-radius: 16px;
+  background: #ffffff;
+  border: 1px solid #dfe6e2;
+  border-radius: 4px;
   padding: 22px;
-  box-shadow:
-    0 2px 8px rgba(16, 24, 40, 0.04);
+  box-shadow: none;
 }
 
 .panel-header {
@@ -292,20 +242,23 @@ button:disabled {
 .panel-header h2 {
   font-size: 17px;
   margin-bottom: 5px;
+  color: #17221e;
+  font-weight: 600;
 }
 
 .panel-header p {
-  font-size: 12px;
-  color: #667085;
+  font-size: 11px;
+  color: #66736d;
 }
 
 .live-badge {
-  background: #ecfdf3;
-  color: #15803d;
-  border-radius: 20px;
-  padding: 7px 11px;
-  font-size: 11px;
-  font-weight: 800;
+  background: #eef3f0;
+  color: #304d42;
+  border-radius: 2px;
+  padding: 6px 10px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
 }
 
 /* =========================================================
@@ -1756,4 +1709,196 @@ button:disabled {
     flex-direction: column;
     gap: 8px;
   }
+}
+/* =========================================
+   CAMPUSGUARD — GLOBAL APP THEME
+   Matches Home Page
+========================================= */
+
+body {
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+}
+
+/* MAIN APP BACKGROUND */
+
+.app {
+  background: #f4f5f2;
+}
+
+.main-content {
+  background: #f4f5f2;
+  color: #17201d;
+}
+
+
+/* =========================================
+   SIDEBAR
+========================================= */
+
+.sidebar {
+  background: #ffffff;
+  border-right: 1px solid #e2e7e3;
+  color: #17201d;
+}
+
+
+/* LOGO */
+
+.logo {
+  color: #17201d;
+}
+
+.logo-box {
+  background: #315848;
+  color: #ffffff;
+  border-radius: 8px;
+}
+
+.logo h2 {
+  color: #17201d;
+}
+
+.logo p {
+  color: #718079;
+}
+
+
+/* =========================================
+   SIDEBAR MENU
+========================================= */
+
+.menu-item {
+  color: #52615b;
+  background: transparent;
+  border-radius: 7px;
+}
+
+.menu-item:hover {
+  background: #eef3ef;
+  color: #315848;
+}
+
+.menu-item.active {
+  background: #dfeae3;
+  color: #315848;
+  font-weight: 600;
+}
+
+
+/* ALERT COUNT */
+
+.menu-alert-count {
+  background: #c95c50;
+  color: white;
+}
+
+
+/* =========================================
+   SIDEBAR BOTTOM
+========================================= */
+
+.sidebar-bottom {
+  border-top: 1px solid #e2e7e3;
+}
+
+.sidebar-bottom p {
+  color: #87918c;
+}
+
+.system-online {
+  color: #496157;
+}
+
+.system-online span {
+  background: #4d9b72;
+}
+
+
+/* =========================================
+   PAGE HEADINGS
+========================================= */
+
+.main-content h1 {
+  color: #17201d;
+}
+
+.main-content h2 {
+  color: #17201d;
+}
+
+.main-content p {
+  color: #718079;
+}
+
+
+/* =========================================
+   GENERAL CARDS
+========================================= */
+
+.main-content .card,
+.main-content .panel {
+  background: #ffffff;
+  border: 1px solid #e0e5e1;
+  box-shadow: 0 4px 15px rgba(25, 45, 36, 0.04);
+}
+
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.main-content button {
+  font-family: inherit;
+}
+
+.main-content button.primary,
+.main-content .primary-btn {
+  background: #315848;
+  color: #ffffff;
+}
+
+.main-content button.primary:hover,
+.main-content .primary-btn:hover {
+  background: #26483a;
+}
+
+
+/* =========================================
+   GREEN STATUS
+========================================= */
+
+.status-active,
+.status-ready,
+.status-online {
+  color: #4d9b72;
+}
+
+
+/* =========================================
+   LIVE BADGES
+========================================= */
+
+.live-badge {
+  background: #e7f5ed;
+  color: #43825f;
+}
+
+
+/* =========================================
+   INPUTS
+========================================= */
+
+.main-content input,
+.main-content select {
+  font-family: inherit;
+  border: 1px solid #dce3de;
+  background: #ffffff;
+  color: #26342e;
+}
+
+.main-content input:focus,
+.main-content select:focus {
+  outline: none;
+  border-color: #8cae9c;
+  box-shadow: 0 0 0 3px rgba(77, 155, 114, 0.08);
 }
