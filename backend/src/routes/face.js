@@ -9,16 +9,16 @@ router.post("/register", async (req, res) => {
       student_id,
       template_reference,
       model_version,
-      quality_score
+      quality_score,
     } = req.body;
 
     if (!student_id || !template_reference || !model_version) {
       return res.status(400).json({
-        message: "student_id, template_reference and model_version are required"
+        message:
+          "student_id, template_reference and model_version are required",
       });
     }
 
-    // Check whether student exists
     const student = await pool.query(
       "SELECT id, roll_no, name FROM students WHERE id = $1",
       [student_id]
@@ -26,11 +26,10 @@ router.post("/register", async (req, res) => {
 
     if (student.rows.length === 0) {
       return res.status(404).json({
-        message: "Student not found"
+        message: "Student not found",
       });
     }
 
-    // Insert or update face data
     const result = await pool.query(
       `INSERT INTO face_data
         (student_id, template_reference, model_version, quality_score)
@@ -46,23 +45,22 @@ router.post("/register", async (req, res) => {
         student_id,
         template_reference,
         model_version,
-        quality_score || null
+        quality_score || null,
       ]
     );
 
     res.status(201).json({
       message: "Face registered successfully",
       student: student.rows[0],
-      face_data: result.rows[0]
+      face_data: result.rows[0],
     });
-
   } catch (error) {
     console.error("Face registration error:", error);
 
     res.status(500).json({
-      message: "Failed to register face"
+      message: "Failed to register face",
     });
   }
 });
 
-module.exports = router; 
+module.exports = router;
